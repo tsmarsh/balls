@@ -1,5 +1,5 @@
-num = 1000;
-radius = 10;
+num = 200;
+radius = 25;
 
 
 golden_ratio = (1 + sqrt(5)) / 2;
@@ -66,16 +66,28 @@ surface_area = 4 * PI * radius * radius;
 area_per = surface_area / num;
 R = sqrt(area_per / PI) * 1.2;
     
-difference() {
-    sphere(radius + (R*0.8), $fn = 100);
-    sphere(radius - (R*0.7));
-    fib_sphere(num, radius, R);
-}
-
-//translate([3*radius, 0, 0]){
-//    difference() {
-//        sphere(radius + (R*0.8));
-//        sphere(radius - (R*0.2));
-//        fib_poly(num, radius, R);
-//    }
+//difference() {
+//    sphere(radius + (R*0.8), $fn = 100);
+//    sphere(radius - (R*0.7));
+//    fib_sphere(num, radius, R);
 //}
+//
+//translate([0,0,0-0.1])
+//difference() {
+//translate([0,0,-radius*1.25])
+//cylinder(radius / 2, radius / 2, radius /2);
+//
+//sphere(radius + (R*0.8), $fn = 100);
+//}
+
+translate([0,0,-radius*1.25])
+
+    for(r = [2: 2: radius / 2]){
+        difference() {
+                cylinder(radius / 2, r, r);
+                cylinder(radius / 2, r-1, r-1);
+        }
+    }
+    
+
+
